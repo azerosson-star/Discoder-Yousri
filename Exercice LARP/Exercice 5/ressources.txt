@@ -1,0 +1,9 @@
+\\ Module principal
+DÉBUT
+REQUÊTE "Entrer un nombre " ,nb
+POUR i =1 JUSQU'À 10 FAIRE
+r=nb*i
+ÉCRIRE nb,"x",i,"=",r 
+ 
+FINPOUR
+FIN
