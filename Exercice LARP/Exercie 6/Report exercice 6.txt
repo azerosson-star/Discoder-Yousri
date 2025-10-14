@@ -1,0 +1,3 @@
+Sur l'exercice 1 je n'ai pas eu d'énorme difficulté, ne serait-ce que j'ai mis du temps à réparer une simple erreur : c'était un oubli de "Requete"...
+Sur l'exercice 2, j'ai mis énormément de temps à trouver une façon de procéder (environ 3 ou 4 peut etre plus) malgré avoir compris la logique du premier coup.
+Après avoir compris l'exercice 2, je n'ai pas forcément eu de problème sur le 3 et le 4.
