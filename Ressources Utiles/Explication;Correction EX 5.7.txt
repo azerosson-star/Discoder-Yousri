@@ -1,0 +1,14 @@
+Debut
+g=0
+Pour i = 1 jusqu'à 20 faire //répéter jusqu'à 20 
+Requete "",b//cette partie sert a ecrire une valeur et à la lire en meme temps
+jusqu'a b est entier// verifie que c'est un valeur numérique qui a été entrer
+//
+Si b>g alors
+g=b             //cette partie sert a retenir la valeur la plus grande jusqu'a qu'une valeur plus grande la remplace
+//
+place=i
+FINSI
+FINPOUR
+Ecrire "le plus grand nombre est",g,"c'etait le",place,"eme"
+Fin

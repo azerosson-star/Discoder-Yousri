@@ -1,0 +1,4 @@
+Pour i=1 jusqu'a [taille du tableau] faire
+tab[i]= alea(1.20) 
+exemple de generation aleatoire d'un tableau 
+fin pour

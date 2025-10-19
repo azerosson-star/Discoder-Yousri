@@ -7,3 +7,23 @@ r=nb*i
  
 FINPOUR
 FIN
+
+debut
+requete "entrer un nombre",nb
+pour i=ENTIER jusqu'à 5 faire
+r=nb+i
+ecrire nb,"+",i,"=",r 
+FINPOUR
+
+\\ Module principal
+debut
+requete "entrer un nombre ",nb
+r=0
+i=1
+pour i=r+1 jusqu'à 5 faire
+r=r+i
+ecrire r 
+FINPOUR
+
+
+FIN

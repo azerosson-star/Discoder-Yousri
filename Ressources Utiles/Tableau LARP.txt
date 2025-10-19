@@ -1,0 +1,4 @@
+pour i=1 jusqu'à 10(taille du tableau) faire
+Requete "Entrer___",(variable)
+tab[i]=(variable)
+fin pour
