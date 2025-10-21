@@ -1,0 +1,10 @@
+a=10
+b=20
+c=30
+temp1=a
+temp2=b
+temp3=c
+b=temp1
+c=temp2
+a=temp3
+print(a,b,c)
