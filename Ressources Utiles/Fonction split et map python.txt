@@ -1,0 +1,90 @@
+D'accord, je vais t'expliquer les fonctions **`map`** et **`split`** en Python de manière simple et vulgarisée, comme si je parlais à quelqu’un qui découvre ces concepts !
+
+---
+
+### 1. La fonction **`split`** : Découper une chaîne comme une pizza 🍕
+
+**Qu’est-ce que c’est ?**  
+La méthode `split()` est utilisée pour prendre une chaîne de texte (une phrase, par exemple) et la découper en morceaux plus petits, comme si tu coupais une pizza en parts. Ces morceaux sont placés dans une **liste**.
+
+**Comment ça marche ?**  
+Tu dis à `split` où couper (par défaut, il coupe sur les espaces). Chaque morceau devient un élément d’une liste.
+
+**Exemple simple :**
+```python
+phrase = "Salut les amis"
+mots = phrase.split()  # Coupe sur les espaces par défaut
+print(mots)
+```
+**Résultat** : `['Salut', 'les', 'amis']`  
+→ La phrase est découpée en une liste de mots.
+
+**Avec un séparateur précis :**  
+Tu peux choisir un autre point de coupe, comme une virgule.
+```python
+liste = "pomme,banane,orange"
+fruits = liste.split(",")  # Coupe sur les virgules
+print(fruits)
+```
+**Résultat** : `['pomme', 'banane', 'orange']`
+
+**En résumé :**  
+`split()` prend une chaîne et la transforme en une liste en coupant à l’endroit que tu indiques (ou sur les espaces par défaut). C’est super utile pour manipuler du texte, comme extraire des mots ou des données séparées par des virgules.
+
+---
+
+### 2. La fonction **`map`** : Appliquer une transformation à toute une liste 🚀
+
+**Qu’est-ce que c’est ?**  
+La fonction `map()` est comme un chef cuisinier qui applique la même recette (une fonction) à chaque ingrédient d’une liste. Elle prend une fonction et une liste, et applique cette fonction à chaque élément pour créer une **nouvelle liste** avec les résultats.
+
+**Comment ça marche ?**  
+Tu donnes à `map()` deux choses :
+- Une **fonction** (ce que tu veux faire à chaque élément).
+- Une **liste** (ou un autre objet itérable, comme une chaîne ou un tuple).
+
+**Exemple simple :**  
+Imaginons que tu veux doubler chaque nombre d’une liste.
+```python
+nombres = [1, 2, 3, 4]
+doubles = map(lambda x: x * 2, nombres)  # Applique "x * 2" à chaque élément
+print(list(doubles))
+```
+**Résultat** : `[2, 4, 6, 8]`  
+→ Chaque nombre a été multiplié par 2.
+
+**Important :** `map()` retourne un **objet map**, donc il faut le convertir en liste avec `list()` pour voir les résultats.
+
+**Exemple avec des chaînes :**  
+Tu peux aussi utiliser `map()` pour transformer des chaînes. Par exemple, mettre chaque mot en majuscules :
+```python
+mots = ["salut", "les", "amis"]
+majs = map(str.upper, mots)  # Applique la fonction str.upper à chaque mot
+print(list(majs))
+```
+**Résultat** : `['SALUT', 'LES', 'AMIS']`
+
+**En résumé :**  
+`map()` est comme une machine qui applique une transformation (une fonction) à chaque élément d’une liste, et te donne une nouvelle liste avec les résultats. C’est pratique pour éviter d’écrire des boucles quand tu veux modifier tous les éléments d’un coup.
+
+---
+
+### Exemple combiné avec `split` et `map` :
+Imaginons que tu as une chaîne de nombres séparés par des virgules, et tu veux les convertir en nombres entiers.
+```python
+texte = "1,2,3,4"
+# Étape 1 : Découper avec split
+liste_texte = texte.split(",")  # ['1', '2', '3', '4']
+# Étape 2 : Convertir chaque élément en entier avec map
+nombres = list(map(int, liste_texte))  # Applique int() à chaque élément
+print(nombres)
+```
+**Résultat** : `[1, 2, 3, 4]`
+
+---
+
+### Pourquoi c’est cool ?  
+- **`split`** : Parfait pour transformer du texte brut (comme une ligne d’un fichier CSV) en une liste facile à manipuler.
+- **`map`** : Idéal pour appliquer une transformation rapide à tous les éléments d’une liste sans écrire de boucle.
+
+Si quelque chose n’est pas clair ou si tu veux un exemple plus précis, dis-le-moi ! 😊
