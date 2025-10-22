@@ -1,3 +1,3 @@
 nb=input("entrer un nombre : ")
-nbcar=[nb*nb]        
+nbcar=[f"{int(nb)*int(nb)}"]        
 print(nbcar)

@@ -1,0 +1,6 @@
+HT=input("entrer le prix hors taxe : ")
+nbarticle=input("entrer le nombre d'articles : ")
+prixHTtotal=float(HT)*int(nbarticle)
+Taxe=input("entrer le taux de taxe : ")
+prixTTC=float(prixHTtotal)+float(prixHTtotal)*(float(Taxe)/100)
+print(f"le prix total TTC est de : {prixTTC}")
