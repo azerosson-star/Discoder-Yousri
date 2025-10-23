@@ -1,0 +1,40 @@
+nb=map(int,input("entrez vos nombres séprarées par des virgules : ").split(","))
+nb=list(nb)
+print(f"les nombres positifs sont : {[i for i in nb if i>0]}")
+print(f"les nombres négatifs sont : {[i for i in nb if i<0]}")
+#######################################################
+# PYTHON - ANALYSE DE CODE : FILTRAGE DE LISTE
+#######################################################
+
+# Objectif du code : Saisir une série de nombres, puis les trier et les afficher
+# en deux groupes distincts : les positifs et les négatifs.
+
+# 1. SAISIE ET CONVERSION DES DONNÉES
+# -------------------------------------------------------
+
+# nb = map(int, input("...").split(","))
+# -> 'input()' : Récupère la chaîne de texte de l'utilisateur (ex: "10,-5,3,0,-8").
+# -> '.split(",")' : Découpe la chaîne à chaque virgule pour créer une liste de chaînes (ex: ['10', '-5', '3', '0', '-8']).
+# -> 'map(int, ...)' : Applique la conversion 'int' à chaque élément de cette liste pour les transformer en vrais nombres entiers.
+
+# nb = list(nb)
+# -> Convertit l'objet 'map' (qui est un itérateur) en une liste standard ('list')
+#    pour pouvoir l'utiliser plusieurs fois.
+
+# 2. FILTRAGE ET AFFICHAGE (COMPRÉHENSION DE LISTE)
+# -------------------------------------------------------
+
+# La partie cruciale est la 'compréhension de liste', une syntaxe Python rapide :
+# [ i for i in nb if condition ]
+
+# Positifs :
+# print(f"les nombres positifs sont : {[i for i in nb if i>0]}")
+# -> Filtre la liste 'nb' pour ne garder que les éléments 'i' qui sont STRICTEMENT SUPÉRIEURS à 0.
+# -> Le nombre '0' n'est ni positif, ni négatif, il est donc exclu.
+
+# Négatifs :
+# print(f"les nombres négatifs sont : {[i for i in nb if i<0]}")
+# -> Filtre la liste 'nb' pour ne garder que les éléments 'i' qui sont STRICTEMENT INFÉRIEURS à 0.
+
+# RAPPEL : Le résultat de la compréhension de liste est affiché directement.
+#######################################################

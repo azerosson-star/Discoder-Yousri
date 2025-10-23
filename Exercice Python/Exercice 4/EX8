@@ -1,0 +1,6 @@
+jour,mois,année=map(int,input("Entrez une date (jj/mm/aaaa) : ").split("/"))
+print(f"jour : {jour}, mois : {mois}, année : {année}")
+if année%4==0 and (année%100!=0 or année%400==0):
+    print(f"l'année {année} est bissextile")
+else:
+    print(f"l'année {année} n'est pas bissextile")

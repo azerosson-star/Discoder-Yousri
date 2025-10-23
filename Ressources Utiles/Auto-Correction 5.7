@@ -1,0 +1,33 @@
+nb=int(input("Entrez un nombre : "))
+nbmax=nb
+position=1
+for i in range (2,10):
+    i=int(input("Entrez un nombre : "))
+    if i>nbmax:
+        nbmax=i
+        position=i
+        print(f"la valeur max est {nbmax} et sa position est {position}")
+\\code original
+
+
+
+
+\\correction
+
+nb = int(input("Entrez un nombre : "))
+nbmax = nb
+position_max = 1  # La position du premier nombre est 1
+
+# Nous voulons lire 9 autres nombres (donc 10 au total). 
+# La boucle va de 2 à 10 inclus pour représenter les positions suivantes.
+for i in range(2, 11): 
+    nb_courant = int(input("Entrez un nombre : "))
+    
+    # Vérification et mise à jour du maximum et de sa position
+    if nb_courant > nbmax:
+        nbmax = nb_courant
+        position_max = i # La position est la valeur de la variable de boucle 'i'
+        
+# Affichage du résultat final une fois la boucle terminée
+print(f"\nLa valeur maximale est {nbmax} et sa position est {position_max}")
+
