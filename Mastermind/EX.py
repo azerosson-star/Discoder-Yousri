@@ -9,7 +9,7 @@ def propJoueur():
 
 #On génere une combinaison aléatoire
 def genRand():
-    nb= random.randint(1,6) #random.randint pour générer une variable entière aléatoire
+    nb=random.randint(1, 6) #random.randint pour générer une variable entière aléatoire
     return nb
 
 #À l'aide de la fonction ci-dessus on génere une liste entiere aléatoire

@@ -1,0 +1,6 @@
+nb=map(int,input("entrez vos nb séprarées par des virgules : ").split(","))
+nb=list(nb)
+nbtrié=sorted(nb)
+print(nbtrié)
+nbtrié.sort(reverse=True)
+print(nbtrié)
