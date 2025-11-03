@@ -1,0 +1,19 @@
+/* Réinitialisation de base pour éviter les marges/paddings par défaut */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Permet au body de prendre 100% de la hauteur de html */
+}
+h1{color:blueviolet}
+
+.rectangle {
+    width: 200rem; /* Exemple: une largeur fixe */
+    height: 100rem; /* Ceci fait prendre au rectangle 100% de la hauteur visible du navigateur */
+    background-color:; /* Un joli bleu pour l'exemple */
+    color: red;
+    padding: 20rem;
+    box-sizing: border-box; /* Pour inclure le padding dans la hauteur/largeur totale */
+    
+}
+nav{
+background-color: aquamarine;}
