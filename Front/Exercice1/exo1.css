@@ -1,0 +1,14 @@
+#fond{
+background-color:blue;
+margin:2rem;
+display:flex;
+justify-content:center ;
+align-items:flex-end;
+
+}
+
+div { 
+    height: 70vh;
+    
+    color: white;
+}

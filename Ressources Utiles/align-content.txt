@@ -1,0 +1,38 @@
+/* Alignement le long de l'axe */
+/* Note : align-content ne prend pas en charge les valeurs left et right */
+align-content: center; /* Les éléments sont groupés au centre */
+align-content: start; /* Les éléments sont groupés au début  */
+align-content: end; /* Les éléments sont groupés à la fin */
+align-content: flex-start; /* Les éléments flexibles sont groupés au début */
+align-content: flex-end; /* Les éléments flexibles sont groupés à la fin */
+
+/* Alignement normal */
+align-content: normal;
+
+/* Alignement sur la ligne de base */
+align-content: baseline;
+align-content: first baseline;
+align-content: last baseline;
+
+/* Répartition de l'espace */
+align-content: space-between; /* L'espace est réparti entre
+                                 les éléments, le premier est
+                                 accolé au bord et le dernier
+                                 également. */
+align-content: space-around; /* L'espace est réparti entre les
+                                 éléments avec un demi-espace
+                                 au début et à la fin */
+align-content: space-evenly; /* L'espace est réparti entre les
+                                 éléments et autour */
+align-content: stretch; /* Les éléments dimensionnés avec
+                                 auto sont étirés également
+                                 afin de remplir le conteneur*/
+
+/* Gestion du dépassement */
+align-content: safe center;
+align-content: unsafe center;
+
+/* Valeurs globales */
+align-content: inherit;
+align-content: initial;
+align-content: unset;

@@ -1,0 +1,10 @@
+/* <integer> values */
+order: 5;
+order: -5;
+
+/* Global values */
+order: inherit;
+order: initial;
+order: revert;
+order: revert-layer;
+order: unset;
