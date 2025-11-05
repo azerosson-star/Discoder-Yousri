@@ -1,0 +1,29 @@
+/* Reset */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background image (top band) */
+#background img {
+    display: block;
+    width: 100%;
+    height: 15vh; /* adjust as needed */
+    object-fit: cover;
+ /* crop to fill while keeping aspect */
+}
+
+/* Second-plan / hero image (fills viewport) */
+#secondplan img {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Small screens: reduce hero height to avoid overly tall images */
+@media (max-width: 600px) {
+    #background img { height: 25vh; }
+    #secondplan img { height: 60vh; }
+}
