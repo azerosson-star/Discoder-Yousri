@@ -1,0 +1,17 @@
+body{margin: 0;}
+
+
+.background1{background-image: url(images/fond.jpg);
+    height: 100rem;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.background2{
+background-image: url(images/fond1.png);
+background-position: center;
+background-repeat: no-repeat;
+background-size:  10rem;
+z-index: 1;
+    
+}
