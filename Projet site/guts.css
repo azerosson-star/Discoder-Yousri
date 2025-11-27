@@ -1,0 +1,46 @@
+body {
+margin:0;
+padding: 0;
+
+}
+
+.background1{
+background-size: cover;
+
+
+background-image: url(Images/Guts-background.jpg);
+background-repeat: no-repeat;}
+
+.pics {
+    position:absolute;
+right: 25rem;
+
+top:25rem;
+width: 7.5rem;
+height:auto;
+
+border-radius: 8px;
+box-shadow: 0 0 10 black;
+}
+
+.picstexte{position: absolute;
+right:27.4rem;
+top: 22rem;
+color: white;
+font-size: 1.2rem;
+font-weight: bold;
+font-family: 'Times New Roman', serif;
+}
+
+.logo1{height: auto;
+    position: absolute;
+width: 8rem;
+left: 6rem;
+top:2rem
+}
+
+
+
+
+
+
