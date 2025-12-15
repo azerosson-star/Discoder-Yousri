@@ -1,0 +1,24 @@
+Fonction d'agrégation	&Description
+COUNT()	           Compte le nombre de lignes.
+SUM()	Réalise la somme des valeurs.
+AVG()	Réalise la moyenne des valeurs.
+MIN()	Renvoie l'élément le plus petit.
+MAX()	Renvoie l'élément le plus grand.
+
+
+Par exemple, la requête SQL permettant d'obtenir l'année du livre publié en premier depuis la table Livre est :
+
+SELECT MIN(annee) AS premiere_annee FROM Livre;
+
+AS permet de renommer un attribut dans le résultat à la requête.
+
+
+Ajouter ORDER BY attribut suivi de ASC (par ordre croissant) 
+ou de DESC (par ordre décroissant) permet d'afficher les résultats triés selon une relation d'ordre donnée.
+
+exemple: 
+select prenom from usager order by prenom desc
+
+
+
+

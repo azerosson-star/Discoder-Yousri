@@ -1,0 +1,1 @@
+const parametres = new URLSearchParams(window.location.search);

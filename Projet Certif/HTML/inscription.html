@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte</title>
+    <link rel="stylesheet" href="../CSS/inscription.cssù">
+
+</head>
+
+<body>
+    <h1>Créer un compte</h1>
+
+    <form method="post">
+        <div id="create">
+            <label for="nom">Nom d'utilisateur :</label><input required type="text" name="nom" id="nom">
+            <div></div>
+            <div></div>
+            <label for="ddn">Date de naissance :</label><input required type="date" name="ddn" id="ddn">
+            <label for="tel">Numéro de téléphone :</label><input required type="tel" name="tel" id="tel">
+            <label for="email">Adresse email :</label><input required type="email" name="email" id="email">
+            <label for="password">Créer un mot de passe : </label><input required type="password" name="password"
+                id="password"><label for="confEmail">Confirmer l'adresse email :</label><input required type="confEmail"
+                name="confEmail" id="confEmail">
+            <label for="confPass">Confirmer le mot de passe :</label><input required type="password" name="confPass"
+                id="confPass">
+            <div id="checkPass">
+                <div>Minimums prérequis pour le mot de passe</div>
+                <label for="char">12 charactères</label>
+                <input type="checkbox" disabled name="char" id="char">
+                <label for="min">1 minuscule</label>
+                <input type="checkbox" disabled name="min" id="min">
+                <label for="spec">1 caractère spécial</label>
+                <input type="checkbox" disabled name="spec" id="spec">
+                <label for="num">1 nombre</label>
+                <input type="checkbox" disabled name="num" id="num">
+                <label for="maj">1 majuscule</label>
+                <input type="checkbox" disabled name="maj" id="maj">
+            </div>
+        </div>
+        <div id="boutons">
+            <button type="reset">Réinitialiser</button>
+            <button type="submit">Créer un compte</button>
+            <button><a href="connexion.html">Se connecter</a></button>
+        </div>
+    </form>
+    <script src="../JS/script_inscription.js"></script>
+</body>
+
+</html>

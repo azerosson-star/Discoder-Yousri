@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="../CSS/connexion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <h1>Connexion</h1>
+    <form method="post" id="loginForm">
+        <div id="login">
+            <label for="username">Identifiant :</label>
+            <input required type="text" name="username" id="username">
+
+            <label for="password">Mot de passe :</label>
+            
+            <div class="password-container">
+                <input required type="password" name="password" id="password">
+                <i class="fa-solid fa-eye" id="togglePassword"></i>
+            </div>
+        </div>
+
+        <div id="boutons">
+            <button type="reset">Réinitialiser</button>
+            <button type="submit">Se connecter</button>
+            <button type="button" onclick="location.href='creation.html'">Créer un compte</button>
+        </div>                   
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+
+            if (togglePassword && password) {
+                togglePassword.addEventListener('click', function () {
+                    // 1. On récupère le type actuel (password ou text)
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    
+                    // 2. On change le type de l'input
+                    password.setAttribute('type', type);
+                    
+                    // 3. On change l'icône (bascule entre oeil normal et oeil barré)
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            } else {
+                console.error("Erreur : Impossible de trouver le champ mot de passe ou l'icône.");
+            }
+        });
+    </script>
+</body>
+</html>
