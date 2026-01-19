@@ -241,8 +241,8 @@
                 placeholder="Écrivez votre message ici..."
                 autocomplete="off"
             >
-            <button id="sendButton">Envoyer</button>
-            <button id="clearButton" class="clear-button">Effacer</button>
+            <button id="sendButton" type="button">Envoyer</button>
+            <button id="clearButton" type="button" class="clear-button">Effacer</button>
         </div>
     </div>
 
@@ -253,6 +253,36 @@
         const sendButton = document.getElementById('sendButton');
         const clearButton = document.getElementById('clearButton');
         const typingIndicator = document.getElementById('typingIndicator');
+
+        // Si la page est servie par un serveur statique (ex: Live Server :5500),
+        // l'API FastAPI tourne généralement sur :8000. On tente d'abord same-origin,
+        // puis fallback sur 127.0.0.1:8000.
+        const apiCandidates = [
+            `${window.location.origin}/api/chat`,
+            `http://127.0.0.1:8000/api/chat`,
+            `http://localhost:8000/api/chat`,
+        ];
+
+        async function postChat(payload) {
+            let lastError = null;
+            for (const url of apiCandidates) {
+                try {
+                    const resp = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!resp.ok) {
+                        lastError = new Error(`HTTP ${resp.status}`);
+                        continue;
+                    }
+                    return await resp.json();
+                } catch (e) {
+                    lastError = e;
+                }
+            }
+            throw lastError || new Error('Erreur réseau');
+        }
 
         // Fonction pour ajouter un message au chat
         function addMessage(role, content) {
@@ -288,22 +318,10 @@
             typingIndicator.classList.add('active');
             
             try {
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        message: message,
-                        conversation_id: conversationId
-                    })
+                const data = await postChat({
+                    message: message,
+                    conversation_id: conversationId
                 });
-                
-                if (!response.ok) {
-                    throw new Error('Erreur réseau');
-                }
-                
-                const data = await response.json();
                 
                 // Sauvegarder l'ID de conversation
                 conversationId = data.conversation_id;
@@ -340,9 +358,12 @@
         sendButton.addEventListener('click', sendMessage);
         clearButton.addEventListener('click', clearChat);
         
-        userInput.addEventListener('keypress', (e) => {
+        userInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
-                sendMessage();
+                e.preventDefault();
+                // Empêche le rechargement de la page et envoie le message
+            event.preventDefault(); 
+            sendMessage();
             }
         });
 

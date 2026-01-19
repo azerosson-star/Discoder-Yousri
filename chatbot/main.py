@@ -1,23 +1,57 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from typing import List, Optional, Dict
+from typing import Any, Dict, List, Optional, cast
+from sqlalchemy.ext.asyncio import AsyncSession
+from contextlib import asynccontextmanager
 import uvicorn
 from datetime import datetime
 import json
 import re
 import random
 import os
+import sys
+from pathlib import Path
 from dotenv import load_dotenv
 from groq import Groq
 from openai import OpenAI
 
+# Windows peut démarrer avec une console en cp1252 : les emojis dans les logs
+# peuvent alors provoquer un UnicodeEncodeError. On force UTF-8 ici.
+_stdout_reconfigure = getattr(getattr(sys, "stdout", None), "reconfigure", None)
+if callable(_stdout_reconfigure):
+    try:
+        _stdout_reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
+_stderr_reconfigure = getattr(getattr(sys, "stderr", None), "reconfigure", None)
+if callable(_stderr_reconfigure):
+    try:
+        _stderr_reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
+# Imports pour la base de données
+from database import get_db, create_tables
+from schemas import ChatRequest, ChatResponse, ConversationResponse, ConversationListResponse
+import crud
+
 # Charger les variables d'environnement
 load_dotenv()
 
-app = FastAPI(title="Chatbot API", version="1.0.0")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Gestionnaire du cycle de vie de l'application"""
+    # Startup
+    await create_tables()
+    print("✅ Base de données initialisée")
+    yield
+    # Shutdown (si nécessaire)
+
+app = FastAPI(title="Chatbot API", version="1.0.0", lifespan=lifespan)
 
 # Configuration de l'IA
 AI_PROVIDER = os.getenv("AI_PROVIDER", "local").lower()
@@ -54,23 +88,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Modèles de données
+# Monter le dossier static
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+# Modèles de données (gardés pour compatibilité avec le code existant)
 class Message(BaseModel):
     role: str  # "user" ou "assistant"
     content: str
     timestamp: Optional[str] = None
 
-class ChatRequest(BaseModel):
-    message: str
-    conversation_id: Optional[str] = None
-
-class ChatResponse(BaseModel):
-    response: str
-    conversation_id: str
-    timestamp: str
-
-# Stockage en mémoire des conversations
-conversations = {}
+# Stockage en mémoire des conversations (obsolète, géré par la BDD)
+# conversations = {}
 
 # Contexte utilisateur pour personnalisation
 user_context = {}
@@ -257,12 +287,14 @@ def generate_ai_response(user_message: str, conversation_history: List[Dict]) ->
             "role": "user",
             "content": user_message
         })
+
+        messages_for_api = cast(Any, messages)
         
         # Appeler l'API selon le provider
         if AI_PROVIDER == "groq":
             completion = ai_client.chat.completions.create(
                 model=AI_MODEL,
-                messages=messages,
+                messages=messages_for_api,
                 temperature=0.7,
                 max_tokens=500,
                 top_p=1,
@@ -271,7 +303,7 @@ def generate_ai_response(user_message: str, conversation_history: List[Dict]) ->
         elif AI_PROVIDER == "openai":
             completion = ai_client.chat.completions.create(
                 model=AI_MODEL,
-                messages=messages,
+                messages=messages_for_api,
                 temperature=0.7,
                 max_tokens=500
             )
@@ -284,12 +316,19 @@ def generate_ai_response(user_message: str, conversation_history: List[Dict]) ->
         print(f"❌ Erreur IA: {e}")
         return None
 
-def generate_response(user_message: str, conversation_id: str = None) -> str:
+def generate_response(user_message: str, conversation_history: List[Dict]) -> str:
     """Génère une réponse intelligente basée sur le message de l'utilisateur"""
     user_message_lower = user_message.lower().strip()
     
-    # Récupérer l'historique de conversation
-    conversation_history = conversations.get(conversation_id, []) if conversation_id else []
+    # 1. Essayer d'utiliser l'IA externe en priorité
+    if AI_PROVIDER != "local":
+        ai_response = generate_ai_response(user_message, conversation_history)
+        if ai_response:
+            return ai_response
+        else:
+            print(f"⚠️ L'appel à l'IA ({AI_PROVIDER}) a échoué. Utilisation du mode local en fallback.")
+
+    # 2. Si l'IA échoue ou n'est pas configurée, utiliser la logique locale
     
     # Analyse de sentiment
     sentiment = analyze_sentiment(user_message)
@@ -318,13 +357,7 @@ def generate_response(user_message: str, conversation_id: str = None) -> str:
         }
         return f"Nous sommes le {days_fr.get(day_name, day_name)} {current_date}. 📅"
     
-    # Essayer d'utiliser l'IA externe d'abord
-    if AI_PROVIDER != "local":
-        ai_response = generate_ai_response(user_message, conversation_history)
-        if ai_response:
-            return ai_response
-    
-    # Recherche dans la base de connaissances locale (fallback)
+    # Recherche dans la base de connaissances locale
     for category, data in knowledge_base.items():
         for pattern in data["patterns"]:
             if pattern in user_message_lower:
@@ -368,89 +401,124 @@ def generate_response(user_message: str, conversation_id: str = None) -> str:
 @app.get("/")
 async def root():
     """Page d'accueil - retourne l'interface HTML"""
-    return FileResponse("static/index.html")
+    return FileResponse(str(STATIC_DIR / "index.html"))
 
 @app.post("/api/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    """Endpoint principal pour le chat"""
+async def chat(request: ChatRequest, db: AsyncSession = Depends(get_db)):
+    """Endpoint principal pour le chat avec base de données"""
     try:
-        # Générer un ID de conversation si nécessaire
-        conversation_id = request.conversation_id or f"conv_{datetime.now().timestamp()}"
+        # Récupérer ou créer une conversation
+        if request.conversation_id:
+            conversation = await crud.get_conversation(db, request.conversation_id)
+            if not conversation:
+                conversation = await crud.create_conversation(db, request.user_name)
+        else:
+            conversation = await crud.create_conversation(db, request.user_name)
         
-        # Initialiser la conversation si elle n'existe pas
-        if conversation_id not in conversations:
-            conversations[conversation_id] = []
+        conversation_id = conversation.conversation_id
         
-        # Ajouter le message de l'utilisateur
-        user_message = Message(
+        # Sauvegarder le message de l'utilisateur dans la BDD
+        await crud.create_message(
+            db=db,
+            conversation_id=conversation_id,
             role="user",
-            content=request.message,
-            timestamp=datetime.now().isoformat()
+            content=request.message
         )
-        conversations[conversation_id].append(user_message.dict())
+        
+        # Récupérer l'historique pour le contexte
+        messages_db = await crud.get_messages(db, conversation_id)
+        conversation_history = [
+            {"role": msg.role, "content": msg.content}
+            for msg in messages_db
+        ]
         
         # Générer la réponse avec le contexte de conversation
-        bot_response_text = generate_response(request.message, conversation_id)
+        bot_response_text = generate_response(request.message, conversation_history)
         
-        # Ajouter la réponse du bot
-        bot_message = Message(
+        # Sauvegarder la réponse du bot dans la BDD
+        bot_message = await crud.create_message(
+            db=db,
+            conversation_id=conversation_id,
             role="assistant",
-            content=bot_response_text,
-            timestamp=datetime.now().isoformat()
+            content=bot_response_text
         )
-        conversations[conversation_id].append(bot_message.dict())
         
         return ChatResponse(
             response=bot_response_text,
             conversation_id=conversation_id,
-            timestamp=datetime.now().isoformat()
+            timestamp=datetime.now().isoformat(),
+            message_id=bot_message.id
         )
     
     except Exception as e:
+        print(f"❌ Erreur chat: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/conversation/{conversation_id}")
-async def get_conversation(conversation_id: str):
-    """Récupère l'historique d'une conversation"""
-    if conversation_id not in conversations:
+async def get_conversation_endpoint(conversation_id: str, db: AsyncSession = Depends(get_db)):
+    """Récupère l'historique d'une conversation depuis la BDD"""
+    conversation = await crud.get_conversation(db, conversation_id)
+    if not conversation:
         raise HTTPException(status_code=404, detail="Conversation non trouvée")
     
-    return {"conversation_id": conversation_id, "messages": conversations[conversation_id]}
+    return {
+        "conversation_id": conversation.conversation_id,
+        "user_name": conversation.user_name,
+        "created_at": conversation.created_at.isoformat(),
+        "messages": [
+            {
+                "role": msg.role,
+                "content": msg.content,
+                "timestamp": msg.timestamp.isoformat()
+            }
+            for msg in conversation.messages
+        ]
+    }
 
 @app.delete("/api/conversation/{conversation_id}")
-async def delete_conversation(conversation_id: str):
-    """Supprime une conversation"""
-    if conversation_id not in conversations:
+async def delete_conversation_endpoint(conversation_id: str, db: AsyncSession = Depends(get_db)):
+    """Supprime une conversation de la BDD"""
+    deleted = await crud.delete_conversation(db, conversation_id)
+    if not deleted:
         raise HTTPException(status_code=404, detail="Conversation non trouvée")
     
-    del conversations[conversation_id]
     return {"message": "Conversation supprimée avec succès"}
 
 @app.get("/api/conversations")
-async def list_conversations():
-    """Liste toutes les conversations"""
+async def list_conversations_endpoint(skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
+    """Liste toutes les conversations depuis la BDD"""
+    conversations_db = await crud.get_conversations(db, skip, limit)
+    
+    conversations_list = []
+    for conv in conversations_db:
+        message_count = await crud.get_message_count(db, conv.id)
+        conversations_list.append({
+            "conversation_id": conv.conversation_id,
+            "user_name": conv.user_name,
+            "message_count": message_count,
+            "created_at": conv.created_at.isoformat(),
+            "updated_at": conv.updated_at.isoformat()
+        })
+    
     return {
-        "total": len(conversations),
-        "conversations": [
-            {
-                "id": conv_id,
-                "message_count": len(messages),
-                "last_message": messages[-1]["timestamp"] if messages else None
-            }
-            for conv_id, messages in conversations.items()
-        ]
+        "total": len(conversations_list),
+        "conversations": conversations_list
+    }
+
+@app.get("/api/stats")
+async def get_stats(db: AsyncSession = Depends(get_db)):
+    """Obtenir des statistiques sur les conversations"""
+    stats = await crud.get_conversation_stats(db)
+    return {
+        "status": "success",
+        "statistics": stats,
+        "timestamp": datetime.now().isoformat()
     }
 
 @app.get("/health")
 async def health_check():
     """Endpoint de santé"""
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
-
-# Monter le dossier static
-try:
-    app.mount("/static", StaticFiles(directory="static"), name="static")
-except:
-    pass
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
