@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site 2</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/forms.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="flex">
+    <input type="checkbox" id="nav-toggle" class="menu-toggle">
+    <label for="nav-toggle" class="burger-btn bg-dark" style="display:none;">☰</label>
+
+    <nav class="sidebar bg-dark p-2 flex flex-col h-100vh w-sidebar gap-1 fixed">
+        <h2>Site 2</h2>
+        <a href="index.html" class="td-none">Accueil</a>
+        <a href="produits.html" class="td-none">Produits</a>
+        <a href="contact.html" class="td-none">Contact</a>
+    </nav>
+    <main class="flex-grow p-2 ml-sidebar pt-mobile">
+
+        <h1 class="mb-1">Accueil du Site 2</h1>
+        <p class="p-2 bg-white br-1 shadow">Ici la navigation est latérale. Sur petit écran, elle disparait pour laisser place à un bouton burger 100% fonctionnel sans JS.</p>
+        
+        <input type="checkbox" id="ai-toggle" class="toggle-checkbox">
+        <label for="ai-toggle" class="ai-btn bg-primary fixed bottom-0 right-0 shadow">💬</label>
+        <div class="ai-frame fixed bg-white shadow br-1 p-1 flex-col">
+            <h3 class="mb-1">Assistant IA</h3>
+            <div class="chat-bubble chat-left">Bonjour de l'IA du site 2 !</div>
+        </div>
+    </main>
+</body>
+</html>
