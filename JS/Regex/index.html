@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <form action=""> 
+ <input type="text" id="nom" placeholder="Entrez votre nom ici"
+ pattern="[a-zA-ZÀ-ÿ\s\-']+">
+ <input type="text" id="prenom" pattern="[a-zA-ZÀ-ÿ\s\-']+" placeholder="Entrez votre prénom ici">
+ <input type="text" id="mail" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}" placeholder="Entrez votre e-mail ici">
+ <input type="date" id="date">
+ <input type="text" placeholder="Entrez une date xx/xx/xxx" id="date2" pattern="\d{2}/\d{2}/\d{4}" maxlength="11">
+ <input type="text" id="cp"
+        pattern="[0-9]{5}"
+        placeholder="Ex: 75001"
+        maxlength="5">
+        <button type="submit">submit</button>
+<input type="tel">
+
+<input type="password" id="mpd" placeholder="mot de passe" pattern="">
+</form>
+
+
+
+
+</body>
+</html>
