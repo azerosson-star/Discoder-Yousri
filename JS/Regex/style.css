@@ -1,0 +1,35 @@
+
+form {
+  display: flex;
+  
+  flex-direction: column;
+
+  row-gap: 1rem;
+
+}
+
+button {
+  width: 20.5rem;}
+
+input {
+  width: 20rem;
+  border-radius: 5px
+ 
+  
+  }
+
+
+.erreur{
+background-color: rgb(241, 107, 107);
+}
+
+.valid{ 
+background-color: rgb(172, 254, 172);
+}
+
+
+
+
+
+
+
