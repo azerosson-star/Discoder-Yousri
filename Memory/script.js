@@ -13,14 +13,14 @@
  * Stocke la première carte cliquée par le joueur
  * Sera utilisée pour comparer avec la deuxième carte
  */
-let clic1 = null;     
+clic1 = null;     
 
 /**
  * @type {Element|null}
  * Stocke la deuxième carte cliquée par le joueur
  * Sera comparée avec la première carte (clic1)
  */
-let clic2 = null; 
+clic2 = null; 
 
 /**
  * @type {boolean}
@@ -28,27 +28,27 @@ let clic2 = null;
  * Empêche le joueur de cliquer trop rapidement
  * ou de cliquer plus de 2 cartes à la fois
  */
-let bloqueClic = false;    
+bloqueClic = false;    
 
 /**
  * @type {number}
  * Compteur du nombre de paires trouvées correctement
  * Quand on atteint 8 paires, le joueur a gagné
  */
-let pairesTrouvees = 0; 
+pairesTrouvees = 0; 
 
 /**
  * @type {number}
  * Compteur du nombre total de clics effectués
  * Sert à afficher le score du joueur
  */
-let nombreClics = 0;
+nombreClics = 0;
 
 /**
  * Sélectionne TOUTES les cartes du jeu (éléments avec la classe "carte")
  * querySelectorAll retourne une NodeList de tous les éléments correspondants
  */
-let toutesLesCartes = document.querySelectorAll(".carte");
+toutesLesCartes = document.querySelectorAll(".carte");
 
 
 /**
