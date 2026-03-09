@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.interface {
+  margin-bottom: 1vh;
+}
+
+
+.interface h2 {
+  margin: 1vh 0; 
+}
+
+.carte {
+  width: 14vh;     
+  height: 20vh;     
+  object-fit: cover; 
+  border: 2px solid #333;
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 14vh); 
+  
+  row-gap: 1.5vh;    
+  column-gap: 2vh;   
+  
+  justify-content: center; 
+}
