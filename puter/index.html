@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat Multi-Agents IA Premium</title>
+    
+    <script src="https://js.puter.com/v2/"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>Mes IA Personnelles 🧠</span>
+            <button id="clear-btn">🗑️ Vider le chat</button>
+        </div>
+
+        <div id="chat-box">
+            <div class="system-msg">👋 Bienvenue ! Posez une question complexe ou analysez une image.</div>
+        </div>
+        
+        <div id="image-preview-container" style="display: none;">
+            <img id="image-preview" src="" alt="Aperçu">
+            <button id="remove-image-btn" title="Retirer l'image">❌</button>
+        </div>
+
+        <div id="input-area">
+            <label for="image-upload" id="image-upload-label" title="Joindre une image">📷</label>
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+            
+            <input type="text" id="user-input" placeholder="Écrivez ou glissez une image ici...">
+            <button id="send-btn">Envoyer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
     
 </body>
-<script src="https://js.puter.com/v2/"></script>   
 </html>
