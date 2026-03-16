@@ -1,0 +1,180 @@
+🧱 Dictionnaire Détaillé : HTML (Structure)
+1. Les Fondations et Métadonnées
+
+<!DOCTYPE html> : Déclare que la page est en HTML5 (toujours en 1ère ligne).
+
+<html> : La balise racine qui englobe tout le site.
+
+<head> : Contient les informations invisibles pour l'utilisateur.
+
+<meta charset="UTF-8"> : Gère les accents et caractères spéciaux.
+
+<title> : Le titre de l'onglet du navigateur.
+
+<link rel="stylesheet" href="style.css"> : Relie le fichier CSS.
+
+<body> : Contient tout le contenu visible de la page.
+
+2. La Sémantique (Structure logique de la page)
+
+<header> : L'en-tête (contient souvent le logo).
+
+<nav> : Le menu de navigation principal.
+
+<main> : Le contenu principal et unique de la page.
+
+<section> : Une grande section thématique de la page.
+
+<article> : Un contenu indépendant (ex: un article de blog, une carte produit).
+
+<aside> : Du contenu secondaire, souvent sur le côté (barre latérale).
+
+<footer> : Le pied de page.
+
+3. Le Texte
+
+<h1> à <h6> : Les titres, du plus grand (h1) au plus petit (h6). Attention: un seul h1 par page !
+
+<p> : Un paragraphe de texte.
+
+<span> : Un conteneur générique en ligne (pour cibler un mot dans une phrase).
+
+<strong> : Met le texte en gras (et indique qu'il est important).
+
+<em> : Met le texte en italique (emphase).
+
+<br> : Fait un saut de ligne simple.
+
+<hr> : Trace une ligne de séparation horizontale.
+
+4. Les Listes et Liens
+
+<ul> : Liste à puces (non ordonnée).
+
+<ol> : Liste numérotée (ordonnée).
+
+<li> : Un élément à l'intérieur d'une liste ul ou ol.
+
+<a> (avec href="url") : Un lien hypertexte. Astuce : ajoute target="_blank" pour ouvrir dans un nouvel onglet.
+
+5. Les Médias
+
+<img> : Insère une image. Nécessite src="chemin/image.jpg" et alt="description de l'image".
+
+6. Les Formulaires
+
+<form> : Englobe tout le formulaire.
+
+<label> : L'étiquette de l'action (liée à l'input via l'attribut for).
+
+<input> : Le champ de saisie. L'attribut type change son comportement :
+
+type="text" : Texte classique.
+
+type="email" : Vérifie que c'est un email.
+
+type="password" : Masque les caractères.
+
+type="checkbox" / type="radio" : Case à cocher / Bouton radio.
+
+<textarea> : Un grand champ de texte multi-lignes.
+
+<select> et <option> : Créent un menu déroulant.
+
+<button type="submit"> : Le bouton pour envoyer le formulaire.
+
+🎨 Dictionnaire Détaillé : CSS (Design)
+1. Les Sélecteurs (Qui je cible ?)
+
+* : Cible TOUT (souvent utilisé pour le Reset CSS).
+
+p : Cible toutes les balises <p>.
+
+.ma-classe : Cible les éléments ayant class="ma-classe".
+
+#mon-id : Cible l'élément unique ayant id="mon-id".
+
+a:hover : Cible le lien uniquement quand la souris passe dessus.
+
+2. Le Modèle de Boîte (Box Model & Tailles)
+
+width / height : Largeur / Hauteur (en px, %, vw, vh).
+
+margin : L'espace extérieur (repousse les éléments voisins).
+
+padding : L'espace intérieur (donne de l'air au contenu dans sa boîte).
+
+border : La bordure (ex: 1px solid black).
+
+border-radius : Arrondit les angles de la bordure.
+
+box-sizing: border-box; : Oblige le padding et la bordure à être inclus dans la width (indispensable pour éviter les bugs de taille).
+
+3. Typographie et Couleurs
+
+color : Couleur du texte.
+
+background-color : Couleur de fond de la boîte.
+
+font-size : Taille du texte.
+
+font-family : Police d'écriture (ex: 'Arial', sans-serif).
+
+font-weight : Épaisseur (ex: bold ou 700).
+
+text-align : Alignement (left, center, right, justify).
+
+text-decoration : Souvent utilisé avec none pour enlever le soulignement des liens.
+
+4. Flexbox (Le Roi de la Mise en Page)
+S'applique sur le parent (le conteneur) :
+
+display: flex; : Active flexbox. Les enfants se mettent côte à côte par défaut.
+
+flex-direction: column; : Empile les enfants de haut en bas (au lieu de gauche à droite).
+justify-content : Aligne sur l'axe principal (center, space-between, space-around, flex-start, flex-end).
+align-items : Aligne sur l'axe secondaire (center, stretch, flex-start).
+flex-wrap: wrap; : Autorise les enfants à passer à la ligne s'ils manquent de place.
+gap: 15px; : Met un espace régulier entre les enfants.
+5. Positionnement
+position: relative; : Position par rapport à sa place normale
+position: absolute; : Positionne l'élément par rapport à son premier parent en relative.
+position: fixed; : Reste fixe à l'écran, même quand on scrolle (ex: un bouton "Retour en haut").
+top, bottom, left, right : Utilisés avec absolute, relative ou fixed pour déplacer l'élément.
+z-index: 10; : Gère la superposition (quel élément passe au-dessus de l'autre).
+⚙️ Dictionnaire Détaillé : Javacript (Logique & DOM)
+1. Variables et Types de Données
+let maVariable = 10; : Variable modifiable.
+const maConstante = "Bonjour"; : Constante (ne peut pas être réassignée).
+Types : String (Texte, entre guillemets), Number (Nombres), Boolean (true ou false), Array (Tableaux [1, 2, 3]).
+2. Opérateurs et Conditions
+=== : Égalité stricte (vérifie la valeur ET le type).
+!== : Différent de.
+&& : ET logique (les deux conditions doivent être vraies).
+|| : OU logique (au moins une condition doit être vraie).
+if (condition) { ... } else if (autre_condition) { ... } else { ... } : Les conditions classiques.
+3. Boucles et Tableaux
+for (let i = 0; i < 10; i++) { ... } : Boucle qui se répète 10 fois.
+monTableau.length : Donne le nombre d'éléments dans un tableau.
+monTableau.push("Nouvel élément") : Ajoute un élément à la fin du tableau.
+monTableau.forEach(element => { ... }) : Exécute une fonction pour chaque élément du tableau.
+4. Fonctions
+function direBonjour(nom) { return "Bonjour " + nom; } : Fonction classique réutilisable.
+const direAuRevoir = (nom) => { return "Au revoir " + nom; } : Fonction fléchée (plus moderne).
+5. Le DOM (Lien entre JS et HTML)
+Sélectionner :
+document.getElementById('mon-id') : Sélectionne un élément par son ID.
+document.querySelector('.ma-classe') : Sélectionne le premier élément qui correspond.
+document.querySelectorAll('p') : Sélectionne tous les éléments correspondants (crée une liste)
+Modifier :
+element.textContent = "Nouveau texte"; : Change le texte brut de l'élément.
+element.innerHTML = "<span>Texte</span>"; : Change le contenu en interprétant le HTML.
+element.style.backgroundColor = "red"; : Modifie le CSS directement.
+element.classList.add('active'); : Ajoute une classe CSS.
+element.classList.remove('active'); : Retire une classe CSS.
+element.classList.toggle('active'); : Ajoute la classe si elle n'y est pas, l'enlève si elle y est (parfait pour les menus Burger !).
+
+6. Événements (Interactivité)
+element.addEventListener('click', function(event) { ... }) : Déclenche une action au clic.
+Autres événements utiles : submit (soumission de formulaire), mouseover (survol), keydown (touche de clavier pressée).
+event.preventDefault(); : Très important pour les formulaires, empêche la page de se recharger lors du clic sur le bouton "Envoyer".
