@@ -1,0 +1,29 @@
+body{margin:0;
+background-color: #2b6e9e ;}
+
+.titre{display: flex;
+justify-content: center;
+padding: 10vh;
+background-color: #9aceda;}
+
+.premier_input{display: flex;
+flex-direction: column;
+margin: 10vh;
+gap: 1vh}
+
+.second_input{display: flex;
+flex-direction: column;
+margin: 10vh;
+gap: 1vh;
+}
+
+.boutons{display: flex;
+justify-content: center;}
+
+#mensualite{
+border:0.1rem solid;}
+
+#total{
+border:0.1rem solid;}
+
+
