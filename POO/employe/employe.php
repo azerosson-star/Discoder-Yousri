@@ -1,12 +1,12 @@
 <?php
 
-class employe 
+class Employe 
 {private $_nom;
  private $_prenom;
- private int$_embauche;
+ private int $_embauche;
  private $_poste;
 
- private int$_salaire;
+ private int $_salaire;
  private $_service;
 
 public function __construct($nom = "",$prenom = "",$embauche = "",$poste = "",$salaire = 0,$service = "")
@@ -91,8 +91,11 @@ public function prime()
         
         echo "\nSon salaire pour l'année " . $i . " est de " . number_format($primajout, 2) . " € brut";
         echo "\nSa prime pour l'année " . $i . " est de " . number_format($prime) . " € net";
+        
     }
+    return $prime;
 }
+public function banque(){}
 
 
 
