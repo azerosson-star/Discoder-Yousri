@@ -68,13 +68,24 @@ public function setService($service)
     $this->_service = $service;
 }
 public function calculdate()
-{date_default_timezone_set('Europe,Paris');
-$echo = intval(date("y"));
-$this->getEmbauche()-"y";
+
+{
+$date_act=0;
+date_default_timezone_set('Europe,Paris');
+$date_act= intval(date("Y"));
+$annee_embauche = intval($this->getEmbauche());
+$anciennete = $date_act - $annee_embauche;
+return $anciennete;
+}
+
+public function calculsalaire(){
+$date_act=+1;
+$salaire_act=intval($this->getSalaire());
+
 }
 
 
-
+ 
 
 
 
