@@ -3,10 +3,10 @@
 class employe 
 {private $_nom;
  private $_prenom;
- private $_embauche;
+ private int$_embauche;
  private $_poste;
 
- private $_salaire;
+ private int$_salaire;
  private $_service;
 
 public function __construct($nom = "",$prenom = "",$embauche = "",$poste = "",$salaire = 0,$service = "")
@@ -71,19 +71,28 @@ public function calculdate()
 
 {
 $date_act=0;
-date_default_timezone_set('Europe,Paris');
+date_default_timezone_set('Europe/Paris');
 $date_act= intval(date("Y"));
 $annee_embauche = intval($this->getEmbauche());
 $anciennete = $date_act - $annee_embauche;
 return $anciennete;
 }
 
-public function calculsalaire(){
-$date_act=+1;
-$salaire_act=intval($this->getSalaire());
+public function prime()
+{
+    $anciennete = $this->calculdate();   // ← on récupère bien le return ici
 
+    for ($i = 1; $i < $anciennete; $i++) 
+    {
+        $salaire_mensuel = $this->getSalaire();
+
+        $primajout = ($salaire_mensuel * 0.05) + ($i * ($this->getSalaire() * 0.02))+($salaire_mensuel);
+        $prime = $primajout - $salaire_mensuel;
+        
+        echo "\nSon salaire pour l'année " . $i . " est de " . number_format($primajout, 2) . " € brut";
+        echo "\nSa prime pour l'année " . $i . " est de " . number_format($prime) . " € net";
+    }
 }
-
 
  
 
