@@ -80,7 +80,7 @@ return $anciennete;
 
 public function prime()
 {
-    $anciennete = $this->calculdate();   // ← on récupère bien le return ici
+    $anciennete = $this->calculdate();   
 
     for ($i = 1; $i < $anciennete; $i++) 
     {
@@ -94,7 +94,7 @@ public function prime()
     }
 }
 
- 
+
 
 
 
