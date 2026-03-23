@@ -1,0 +1,45 @@
+body{
+    background-color: #2b6e9e;
+    margin: 0;
+}
+header{background-color: #9aceda;}
+.haut{
+    display: flex;
+justify-content: column;
+column-gap : 20%;
+}
+
+.logo{
+    width: 20%;
+}
+.side{
+margin:10rem;}
+
+.section{
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr;
+    row-gap: 1rem;
+    }
+
+.section2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1rem;
+}
+.grande_section{
+margin-top: 5rem;}
+
+.section3{display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top:5rem;
+    margin-left: 30rem;
+}
+@media (max-width: 1000px) {
+    body {
+        background-color: #36B9D5;
+    }
+
+}
+
+
+
