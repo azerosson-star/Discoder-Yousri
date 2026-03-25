@@ -25,6 +25,10 @@ public function setHauteur($hauteur)
     $this->_hauteur = $hauteur;
 }
 
+public function hypotenuse(){
+$hypotenuse = ($this->getBase()*$this->getBase())+
+
+}
 
 
 }

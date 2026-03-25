@@ -24,14 +24,14 @@
          Personnes = document.getElementById('personnes');
          Date = document.getElementById('date');
 
-        let formulaireEstValide = true;
+        let formulaireValide = true;
         
         if (validerAvecRegex(Nom, regexNom) === false) {
-            formulaireEstValide = false;
+            formulaireValide = false;
         }
 
         if (validerAvecRegex(Email, regexEmail) === false) {
-            formulaireEstValide = false;
+            formulaireValide = false;
         }
         
          groupePersonnes = Personnes.parentElement;

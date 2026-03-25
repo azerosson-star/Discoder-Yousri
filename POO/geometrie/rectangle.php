@@ -46,10 +46,8 @@ $longueur = $this->getLongueur();
 $largeur = $this->getLargeur();
 $perimetre= $this->Perimetre();
 $estcarre= $this->estCarre();
-$aff= ""
-
-return 
-
+$aff= "Longueur: $longueur <br> Largeur: $largeur <br> Perimetre: $perimetre <br> Est ce un carre? : $estcarre";
+return $aff;
 
 }
 
