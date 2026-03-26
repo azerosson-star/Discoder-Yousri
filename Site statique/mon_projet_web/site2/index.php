@@ -1,3 +1,15 @@
+<?php
+$navbar=  [
+    "index.html" => "Accueil",
+    "produits.html" => "Produits",
+    "contact.html" => "Contact"
+];
+$liensNavbar="";
+foreach($navbar as $url => $label){
+    $liensNavbar .= "<a href='$url' class='td-none'>$label</a>";
+}
+
+$monhtml=<<<HTML
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,9 +27,7 @@
 
     <nav class="sidebar bg-dark p-2 flex flex-col h-100vh w-sidebar gap-1 fixed">
         <h2>Site 2</h2>
-        <a href="index.html" class="td-none">Accueil</a>
-        <a href="produits.html" class="td-none">Produits</a>
-        <a href="contact.html" class="td-none">Contact</a>
+        $liensNavbar
     </nav>
     <main class="flex-grow p-2 ml-sidebar pt-mobile">
 
@@ -33,3 +43,5 @@
     </main>
 </body>
 </html>
+HTML;
+echo $monhtml;
