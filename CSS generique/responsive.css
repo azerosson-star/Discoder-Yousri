@@ -1,0 +1,32 @@
+
+@media screen and (max-width: 800px) {
+    .navbar {
+        column-gap: 5px; 
+    }
+    
+    .navbar input {
+        font-size: 14px; 
+    }
+
+    body {
+        padding: 0 10px;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .navbar {
+        grid-template-columns: 1fr 1fr; 
+        row-gap: 10px; 
+        column-gap: 10px; 
+    }
+
+    .navbar input {
+        height: 6vh; 
+        font-size: 13px; 
+    }
+
+    h1.logo {
+        font-size: 1.8rem; 
+    }
+}

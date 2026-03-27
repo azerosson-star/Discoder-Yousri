@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réserver une table - Lóng Huā</title>
+    
+    <link rel="stylesheet" href="../gen+root.css">
+    <link rel="stylesheet" href="../responsive.css">
+    
+    <link rel="stylesheet" href="formulaire.css">
+</head>
+<body>
+
+    <header>
+        <h1>龍華 Lóng Huā</h1>
+        <p>Gastronomie chinoise raffinée — Paris, depuis 2008</p>
+    </header>
+
+    <nav>
+        <a href="index.html#histoire">Notre histoire</a>
+        <a href="index.html#menu">La carte</a>
+        <a href="index.html#infos">Infos pratiques</a>
+    </nav>
+
+    <main>
+        <h2 class="titre-formulaire">Réserver votre table</h2>
+        
+        <form id="form-reservation" novalidate>
+            
+            <div class="groupe-champ" id="groupe-nom">
+                <label for="nom">Nom de la réservation :</label>
+                <input type="text" id="nom" name="nom" placeholder="Ex: Dupont">
+                <span class="message-erreur">Le nom doit contenir au moins 2 lettres.</span>
+            </div>
+
+            <div class="groupe-champ" id="groupe-email">
+                <label for="email">Adresse Email :</label>
+                <input type="email" id="email" name="email" placeholder="exemple@mail.com">
+                <span class="message-erreur">L'adresse email n'est pas au bon format.</span>
+            </div>
+
+            <div class="groupe-champ" id="groupe-personnes">
+                <label for="personnes">Nombre de convives :</label>
+                <input type="number" id="personnes" name="personnes" min="1" max="15" value="2">
+                <span class="message-erreur">Veuillez choisir un nombre entre 1 et 15.</span>
+            </div>
+
+            <div class="groupe-champ" id="groupe-date">
+                <label for="date">Date souhaitée :</label>
+                <input type="date" id="date" name="date">
+                <span class="message-erreur">Veuillez sélectionner une date valide.</span>
+            </div>
+
+            <button type="submit" id="btn-valider">Confirmer la réservation</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2026 龍華 Lóng Huā — Tous droits réservés</p>
+    </footer>
+
+    <script src="validation.js"></script>
+</body>
+</html>
