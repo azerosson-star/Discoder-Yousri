@@ -1,0 +1,138 @@
+:root {
+    --bodybgc: #0f1117;
+    --grisClair: #888;
+    --violet: #7c9cff;
+    --blanc: #e8e8f0;
+    --grisdFonce: #1a1d27;
+    --bleu: #1c2340;
+    --vertClair: #4ade80;
+    --vertFonce: #0e2a1a;
+    --roseClair: #f87171;
+    --roseFonce: #2a0e0e;
+}
+
+body,
+div,main {
+    display: flex;
+    flex: 1;
+}
+
+.double {
+    flex: 2;
+}
+
+.colonne {
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+body {
+    background: var(--bodybgc);
+    color: var(--blanc);
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--blanc);
+}
+
+span {
+    color: var(--violet);
+}
+
+p {
+    margin-top: 0.5rem;
+    color: var(--grisClair);
+}
+
+.quiz {
+    width: 100%;
+    max-width:75vw;
+    gap: 2rem;
+}
+
+.question-card {
+    background: var(--grisdFonce);
+    border: 1px solid var(--grisClair);
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+h2 {
+    font-weight: 600;
+    color: var(--violet);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+
+
+.gap5 {
+    gap: 0.5rem;
+}
+
+.option {
+    background: var(--bodybgc);
+    border: 2px solid var(--grisClair);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--blanc);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.18s, background 0.18s, color 0.18s;
+}
+
+.option:hover {
+    border-color: var(--violet);
+}
+
+.option.selected {
+    border-color: var(--violet);
+    background: var(--bleu);
+    color: var(--blanc);
+}
+
+.option.correct {
+    border-color: var(--vertClair);
+    background: var(--vertFonce);
+    color: var(--vertClair);
+}
+
+.option.wrong {
+    border-color: var(--roseClair);
+    background: var(--roseFonce);
+    color: var(--roseClair);
+}
+
+
+
+#btn-corriger {
+    font-weight: 600;
+    background: var(--violet);
+    color: var(--grisdFonce);
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.12s;
+}
+
+#btn-corriger:hover {
+    background: var(--violet);
+    transform: translateY(-2px);
+}
+
+#btn-corriger:active {
+    transform: translateY(0);
+}
+
+footer {
+    margin-top: 4rem;
+    color: var(--grisClair);
+}

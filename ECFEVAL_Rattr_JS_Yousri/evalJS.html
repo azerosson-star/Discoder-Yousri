@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz JavaScript – Débutant</title>
+    <link rel="stylesheet" href="styleJS.css">
+</head>
+
+<body class="center colonne">
+
+    <header>
+        <h1>Quiz <span>JavaScript</span></h1>
+        <p>Sélectionne une réponse par question, puis clique sur Corriger.</p>
+    </header>
+
+    <main class="quiz colonne">
+
+        <!-- ======= QUESTION 1 ======= -->
+        <div class="question-card" id="q1">
+            <div class="colonne double">
+                <h2>Question 1</h2>
+                <p>Quel mot-clé permet de déclarer une variable en JavaScript ?</p>
+            </div>
+            <div class=" colonne gap5">
+                <button class="option" class="mauvais "data-question="1" data-index="0">int</button>
+                <button class="option" class="bon"  data-question="1" data-index="1">let</button>
+                <button class="option"  class="mauvais data-question="1" data-index="2">declare</button>
+            </div>
+        </div>
+
+        <!-- ======= QUESTION 2 ======= -->
+        <div class="question-card " id="q2">
+            <div class="colonne double">
+                <h2>Question 2</h2>
+                <p>Que va afficher <code>console.log(typeof "Bonjour")</code> ?</p>
+            </div>
+            <div class="  colonne gap5">
+                <button class="option" data-question="2" data-index="0">number</button>
+                <button class="option" data-question="2" data-index="1">text</button>
+                <button class="option" data-question="2" data-index="2">string</button>
+            </div>
+        </div>
+
+        <div class="center">
+            <button id="btn-corriger">Corriger</button>
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+    <footer>Évaluation JavaScript</footer>
+
+
+</body>
+
+</html>
