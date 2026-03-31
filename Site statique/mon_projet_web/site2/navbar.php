@@ -40,9 +40,11 @@ private $_liensNavbar;
 public function NavBar(){
 $navbar = " ";
 
+return $navbar;
 
 
 
+public function routes()
 }
 
 

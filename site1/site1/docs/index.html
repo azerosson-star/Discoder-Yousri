@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site 1</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/forms.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <header class="bg-dark p-1">
+        <nav class="flex justify-between align-center container">
+            <h2>Site 1</h2>
+            <div class="flex gap-1">
+                <a href="index.html" class="td-none nav-icon" data-icon="🏠"><span class="nav-text">Accueil</span></a>
+                <a href="produits.html" class="td-none nav-icon" data-icon="📦"><span class="nav-text">Produits</span></a>
+                <a href="contact.html" class="td-none nav-icon" data-icon="✉️"><span class="nav-text">Contact</span></a>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+
+        <h1 class="mb-1 text-center">Bienvenue sur le Site 1</h1>
+        <p class="text-center p-2 bg-white br-1 shadow">Ceci est une page d'accueil avec du texte fixe. Notre navbar devient des icônes sur mobile.</p>
+        
+        <input type="checkbox" id="ai-toggle" class="toggle-checkbox">
+        <label for="ai-toggle" class="ai-btn bg-primary fixed bottom-0 right-0 shadow">💬</label>
+        
+        <div class="ai-frame fixed bg-white shadow br-1 p-1 flex-col">
+            <h3 class="mb-1">Assistant IA</h3>
+            <div class="chat-bubble chat-left">Bonjour ! Je suis une IA générée en pur CSS.</div>
+            <div class="chat-bubble chat-right">Impressionnant ! Comment ça marche ?</div>
+            <div class="chat-bubble chat-left">Grâce au Checkbox Hack !</div>
+        </div>
+    </main>
+</body>
+</html>

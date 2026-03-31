@@ -1,0 +1,142 @@
+Voici l'aide-mémoire SQL exhaustif, formaté pour une lecture ultra-rapide.
+CREATE TABLE [IF NOT EXISTS] nom_schema.nom_table (
+    -- 1. IDENTIFIANTS (Clés primaires)
+    id INT PRIMARY KEY AUTO_INCREMENT,          -- MySQL: Auto-incrémentation
+    -- id SERIAL PRIMARY KEY,                   -- PostgreSQL: Auto-incrémentation
+    -- id INT GENERATED ALWAYS AS IDENTITY,     -- SQL Standard moderne
+
+    -- 2. TYPES TEXTUELS & CONTRAINTES SIMPLES
+    matricule VARCHAR(15) NOT NULL UNIQUE,      -- Chaine variable (max 15), obligatoire, sans doublon
+    description TEXT,                           -- Texte long (pas de limite stricte)
+    code_pays CHAR(2) DEFAULT 'FR',             -- Chaine fixe (exactement 2 caractères), valeur par défaut
+
+    -- 3. NOMBRES & CONDITIONS (CHECK)
+    age INT CHECK (age >= 18),                  -- Entier avec règle de validation
+    prix_ht DECIMAL(10, 2) NOT NULL,            -- Nombre exact : 10 chiffres au total dont 2 décimales
+    taux_tva FLOAT DEFAULT 0.20,                -- Nombre à virgule flottante
+
+    -- 4. DATES & BOOLEENS
+    est_actif BOOLEAN DEFAULT TRUE,             -- Vrai/Faux (souvent stocké comme 1/0)
+    date_naissance DATE,                        -- Date (AAAA-MM-JJ)
+    cree_le TIMESTAMP DEFAULT CURRENT_TIMESTAMP,-- Horodatage auto à la création
+    
+    -- 5. CLES ETRANGERES (Relations)
+    categorie_id INT,
+    CONSTRAINT fk_categorie 
+        FOREIGN KEY (categorie_id) 
+        REFERENCES nom_schema.table_categories(id)
+        ON DELETE SET NULL                      -- Si catégorie supprimée -> met NULL ici
+        ON UPDATE CASCADE,                      -- Si ID catégorie modifié -> met à jour ici
+
+    -- 6. CONTRAINTES MULTI-COLONNES (Niveau Table)
+    CONSTRAINT chk_prix_coherence CHECK (prix_ht > 0),
+    CONSTRAINT uc_matricule_pays UNIQUE (matricule, code_pays) -- La combinaison des 2 doit être unique
+CREATE TABLE nouvelle_table AS 
+SELECT col1, col2 FROM ancienne_table WHERE condition;
+);
+CREATE TEMPORARY TABLE table_temp (id INT, nom VARCHAR(50));
+### 1. DDL (Structure des objets)
+ `CREATE [TABLEVIEWINDEXDB]`  Créer un objet.
+ `ALTER TABLE [nom]`  Modifier la structure.
+     `ADD [colonne]`  Ajouter une colonne.
+     `DROP COLUMN [colonne]`  Supprimer une colonne.
+     `MODIFYALTER COLUMN`  Changer le type d'une colonne.
+ `DROP [TABLEVIEWDB]`  Supprimer définitivement l'objet et ses données.
+ `TRUNCATE TABLE`  Vider toutes les données, conserver la structure.
+ `RENAME TO`  Renommer une table ou une colonne.
+
+### 2. DML (Manipulation des données)
+ `INSERT INTO [table] (cols) VALUES (vals)`  Insérer une ligne.
+ `UPDATE [table] SET [col] = [val] WHERE [cond]`  Modifier des lignes.
+ `DELETE FROM [table] WHERE [cond]`  Supprimer des lignes.
+ `MERGE INTO` (ou `UPSERT`)  Insérer si inexistant, sinon mettre à jour.
+
+### 3. DQL (Interrogation de base)
+ `SELECT`  Colonnes à afficher.
+ `DISTINCT`  Exclure les doublons.
+ `FROM`  Table source.
+ `WHERE`  Condition de filtrage des lignes.
+ `GROUP BY`  Grouper selon uneplusieurs colonnes.
+ `HAVING`  Condition de filtrage sur les groupes (après aggrégation).
+ `ORDER BY [col] ASCDESC`  Trier (CroissantDécroissant).
+ `LIMIT [x] OFFSET [y]`  Restreindre le nombre de résultats  Paginer.
+
+### 4. Filtres et Opérateurs Logiques (clause WHERE)
+ `=` , ``  `!=` , `` , ``  Comparateurs standards.
+ `AND` , `OR` , `NOT`  Combinateurs logiques.
+ `IN (x, y, z)`  Fait partie de la liste.
+ `BETWEEN x AND y`  Compris dans l'intervalle.
+ `LIKE '%_x'`  Recherche textuelle (`%` = n caractères, `_` = 1 caractère).
+ `IS NULL`  `IS NOT NULL`  Vérifie la présenceabsence de valeur.
+ `EXISTS (sous-requête)`  Vrai si la sous-requête renvoie au moins une ligne.
+
+### 5. Jointures (Combinaison de tables)
+ `INNER JOIN`  Intersection (correspondances dans les deux tables).
+ `LEFT JOIN`  Toute la table de gauche + correspondances à droite.
+ `RIGHT JOIN`  Toute la table de droite + correspondances à gauche.
+ `FULL OUTER JOIN`  Toutes les données des deux tables.
+ `CROSS JOIN`  Produit cartésien (toutes les combinaisons possibles).
+ `ON`  Condition de la jointure (ex `ON t1.id = t2.t1_id`).
+ `USING (col)`  Raccourci de `ON` si la colonne a le même nom.
+
+### 6. Opérations Ensemblistes
+ `UNION`  Fusionne les résultats de deux requêtes (sans doublons).
+ `UNION ALL`  Fusionne avec les doublons (plus rapide).
+ `INTERSECT`  Lignes communes aux deux requêtes.
+ `EXCEPT`  `MINUS`  Lignes de la 1ère requête absentes de la 2ème.
+
+### 7. Fonctions d'Aggrégation
+ `COUNT(col)`  Nombre de lignes.
+ `SUM(col)`  Somme.
+ `AVG(col)`  Moyenne.
+ `MIN(col)`  `MAX(col)`  Minimum  Maximum.
+
+### 8. Fonctions de Fenêtrage (Analytique)
+ `OVER (PARTITION BY [col] ORDER BY [col])`  Définit la fenêtre.
+ `ROW_NUMBER()`  Numérotation séquentielle des lignes.
+ `RANK()`  Classement avec sauts en cas d'ex-aequo (1, 2, 2, 4).
+ `DENSE_RANK()`  Classement sans sauts (1, 2, 2, 3).
+ `LEAD(col)`  `LAG(col)`  Valeur de la ligne suivante  précédente.
+
+### 9. Contraintes d'intégrité (Définition de table)
+ `PRIMARY KEY`  Identifiant unique et non nul.
+ `FOREIGN KEY (...) REFERENCES ...`  Lien d'intégrité vers une autre table.
+ `UNIQUE`  Interdit les doublons dans la colonne.
+ `NOT NULL`  Interdit les valeurs vides.
+ `CHECK (cond)`  Valide une condition (ex `age  0`).
+ `DEFAULT [val]`  Valeur par défaut si non spécifiée.
+
+### 10. TCL & DCL (Transactions et Sécurité)
+ `COMMIT`  Sauvegarde la transaction.
+ `ROLLBACK`  Annule la transaction.
+ `SAVEPOINT [nom]`  Crée un point de restauration intermédiaire.
+ `GRANT [droits] ON [table] TO [user]`  Accorder des permissions.
+ `REVOKE [droits] ON [table] FROM [user]`  Retirer des permissions.
+
+
+tips 
+
+
+Fonction d'agrégation	&Description
+COUNT()	           Compte le nombre de lignes.
+SUM()	Réalise la somme des valeurs.
+AVG()	Réalise la moyenne des valeurs.
+MIN()	Renvoie l'élément le plus petit.
+MAX()	Renvoie l'élément le plus grand.
+
+
+Par exemple, la requête SQL permettant d'obtenir l'année du livre publié en premier depuis la table Livre est :
+
+SELECT MIN(annee) AS premiere_annee FROM Livre;
+
+AS permet de renommer un attribut dans le résultat à la requête.
+
+
+Ajouter ORDER BY attribut suivi de ASC (par ordre croissant) 
+ou de DESC (par ordre décroissant) permet d'afficher les résultats triés selon une relation d'ordre donnée.
+
+exemple: 
+select prenom from usager order by prenom desc
+
+
+

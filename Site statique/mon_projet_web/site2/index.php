@@ -9,6 +9,10 @@ foreach($navbar as $url => $label){
     $liensNavbar .= "<a href='$url' class='td-none'>$label</a>";
 }
 
+function routes(){
+require   
+}
+
 $monhtml=<<<HTML
 <!DOCTYPE html>
 <html lang="fr">
