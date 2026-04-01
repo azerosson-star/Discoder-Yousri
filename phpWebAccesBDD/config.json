@@ -1,0 +1,8 @@
+{
+    "NomProjet":"toto",
+	"Host":"localhost",
+	"Port":"3306",
+	"DbName":"BDD",
+	"Login":"root",
+	"Pwd":""
+}
