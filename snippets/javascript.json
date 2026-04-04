@@ -1,0 +1,166 @@
+
+	{
+  "Print to console": {
+    "prefix": "clog",
+    "body": [
+      ""
+    ],
+    "description": "Formulaire en JavaScript.",
+  },
+  
+  "Validation de formulaire de connexion": {
+    "prefix": "js-login",
+    "body": [
+      "document.addEventListener('DOMContentLoaded', () => {",
+      "    const loginForm = document.getElementById('${1:loginForm}');",
+      "",
+      "    if (loginForm) {",
+      "        loginForm.addEventListener('submit', (event) => {",
+      "            event.preventDefault();",
+      "",
+      "            const email = document.getElementById('${2:email}').value;",
+      "            const password = document.getElementById('${3:password}').value;",
+      "",
+      "            if (!email || !password) {",
+      "                alert('${4:Veuillez remplir tous les champs.}');",
+      "                return;",
+      "            }",
+      "",
+      "            if (password.length < 6) {",
+      "                alert('${5:Le mot de passe est trop court.}');",
+      "                return;",
+      "            }",
+      "",
+      "            console.log('Tentative de connexion pour :', email);",
+      "            // Ajouter la logique d'API ici",
+      "        });",
+      "    }",
+      "});"
+    ],
+    "description": "Génère un script d'écoute et de validation basique pour un formulaire"
+  },
+  "Fetch API (Requête GET/POST async)": {
+    "prefix": "js-fetch",
+    "body": [
+      "async function ${1:fetchData}() {",
+      "    try {",
+      "        const response = await fetch('${2:https://api.exemple.com/data}', {",
+      "            method: '${3|GET,POST,PUT,DELETE|}',",
+      "            headers: {",
+      "                'Content-Type': 'application/json'",
+      "            }${4:,",
+      "            body: JSON.stringify({ key: 'value' }) // Décommenter si POST/PUT}",
+      "        });",
+      "",
+      "        if (!response.ok) {",
+      "            throw new Error(`Erreur HTTP: \\${response.status}`);",
+      "        }",
+      "",
+      "        const data = await response.json();",
+      "        console.log(data);",
+      "        return data;",
+      "    } catch (error) {",
+      "        console.error('Erreur lors de la requête :', error);",
+      "    }",
+      "}"
+    ],
+    "description": "Génère une fonction asynchrone utilisant l'API Fetch"
+  },
+  "Sélectionner plusieurs éléments (querySelectorAll)": {
+    "prefix": "js-qsa",
+    "body": [
+      "const ${1:elements} = document.querySelectorAll('${2:.ma-classe}');",
+      "${1:elements}.forEach(${3:el} => {",
+      "    ${3:el}.addEventListener('${4:click}', (e) => {",
+      "        ${5:// Logique ici}",
+      "        console.log('Clic sur :', e.target);",
+      "    });",
+      "});"
+    ],
+    "description": "Sélectionne plusieurs éléments et ajoute un écouteur d'événement sur chacun"
+  },
+  "Menu Burger (Toggle d'affichage)": {
+    "prefix": "js-burger",
+    "body": [
+      "const ${1:burgerBtn} = document.querySelector('${2:.burger-menu}');",
+      "const ${3:navMenu} = document.querySelector('${4:.nav-links}');",
+      "",
+      "if (${1:burgerBtn} && ${3:navMenu}) {",
+      "    ${1:burgerBtn}.addEventListener('click', () => {",
+      "        ${3:navMenu}.classList.toggle('${5:active}');",
+      "        ${1:burgerBtn}.classList.toggle('${6:toggle}'); // Pour animer l'icône",
+      "    });",
+      "}"
+    ],
+    "description": "Logique d'ouverture/fermeture pour un menu de navigation mobile"
+  },
+  "Animations au scroll (Intersection Observer)": {
+    "prefix": "js-scroll-animate",
+    "body": [
+      "const observerOptions = {",
+      "    root: null,",
+      "    rootMargin: '0px',",
+      "    threshold: ${1:0.15} // Se déclenche quand 15% de l'élément est visible",
+      "};",
+      "",
+      "const observer = new IntersectionObserver((entries, observer) => {",
+      "    entries.forEach(entry => {",
+      "        if (entry.isIntersecting) {",
+      "            entry.target.classList.add('${2:is-visible}');",
+      "            // Optionnel : arrêter l'observation une fois animé",
+      "            ${3:observer.unobserve(entry.target);}",
+      "        }",
+      "    });",
+      "}, observerOptions);",
+      "",
+      "const ${4:elements} = document.querySelectorAll('${5:.fade-in-up}');",
+      "${4:elements}.forEach(el => observer.observe(el));"
+    ],
+    "description": "Détecte l'apparition d'éléments à l'écran pour déclencher des animations CSS"
+  },
+  "Défilement doux (Smooth Scroll) pour les ancres": {
+    "prefix": "js-smooth-scroll",
+    "body": [
+      "document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {",
+      "    anchor.addEventListener('click', function (e) {",
+      "        e.preventDefault();",
+      "        const targetId = this.getAttribute('href');",
+      "        if (targetId === '#') return;",
+      "        ",
+      "        const targetElement = document.querySelector(targetId);",
+      "        if (targetElement) {",
+      "            targetElement.scrollIntoView({",
+      "                behavior: 'smooth',",
+      "                block: '${1:start}'",
+      "            });",
+      "        }",
+      "    });",
+      "});"
+    ],
+    "description": "Active le défilement fluide vers les sections de la page quand on clique sur un lien interne"
+  },
+  "Système d'onglets (Tabs logic)": {
+    "prefix": "js-tabs",
+    "body": [
+      "const tabBtns = document.querySelectorAll('${1:.tab-btn}');",
+      "const tabContents = document.querySelectorAll('${2:.tab-content}');",
+      "",
+      "tabBtns.forEach(btn => {",
+      "    btn.addEventListener('click', () => {",
+      "        // 1. On retire la classe 'active' de tous les boutons et contenus",
+      "        tabBtns.forEach(b => b.classList.remove('${3:active}'));",
+      "        tabContents.forEach(c => c.classList.remove('${3:active}'));",
+      "",
+      "        // 2. On ajoute 'active' au bouton cliqué",
+      "        btn.classList.add('${3:active}');",
+      "",
+      "        // 3. On affiche le contenu lié (via l'attribut data-tab=\"#id-contenu\")",
+      "        const targetId = btn.getAttribute('${4:data-tab}');",
+      "        document.getElementById(targetId).classList.add('${3:active}');",
+      "    });",
+      "});"
+    ],
+    "description": "Logique JS pour gérer un système d'onglets de contenu"
+  }
+}
+

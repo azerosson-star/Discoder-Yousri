@@ -1,0 +1,7 @@
+{
+    "Balise PHP": {
+        "scope": "php,html",
+        "prefix": "php",
+        "body": ["<?php", "", "$1"]
+    }
+}
