@@ -1,0 +1,8 @@
+{
+    "NomProjet":"Project",
+	"Host":"localhost",
+	"Port":"3306",
+	"DbName":"bddtest",
+	"Login":"root",
+	"Pwd":""
+}
