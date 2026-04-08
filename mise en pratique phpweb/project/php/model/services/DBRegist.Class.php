@@ -1,7 +1,3 @@
 <?php
+require dirname(dirname(__DIR__)) . "/controller/classes/Parametres.Class.php";
 
-if(isset($_POST['ok'])){
-    $nom = $_POST['nom'];
-    $email = $_POST['email'];
-    $mdp = $_POST['mdp'];
-    }

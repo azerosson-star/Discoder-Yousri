@@ -9,11 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
 
             if (!email || !password) {
+                event.preventDefault();
                 alert('Veuillez remplir tous les champs.');
                 return;
             }
 
             if (password.length < 6) {
+                event.preventDefault();
                 alert('Le mot de passe est trop court.');
                 return;
             }

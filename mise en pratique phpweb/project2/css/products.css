@@ -1,0 +1,10 @@
+/* Styles pour les produits (Liste et Cartes) */
+/* Liste (Site 1) */
+.prod-list { display: flex; flex-direction: column; gap: 10px; }
+.prod-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding: 10px; }
+.prod-badge { background: #eee; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; }
+
+/* Grille/Cartes (Site 2) */
+.prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.prod-card { border: 1px solid #ddd; display: flex; flex-direction: column; justify-content: space-between; }
+.prod-img-ph { height: 150px; background: #ccc; border-radius: 8px 8px 0 0; }

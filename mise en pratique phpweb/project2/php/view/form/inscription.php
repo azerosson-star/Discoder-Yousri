@@ -5,7 +5,7 @@ $inscription = <<<HTML
 <form class="bg-white p-2 br-1 shadow flex flex-col gap-1" method="POST" action="index.php?page=inscription">
     <div class="form-group">
         <label class="form-label">nom</label>
-        <input type="text" class="form-input" placeholder="Votre nom d'utilisateur"required >
+        <input type="text" class="form-input" placeholder="Votre nom d'utilisateur"required name="username" id="username">
     </div>
     <div class="form-group">
         <label class="form-label">email</label>
