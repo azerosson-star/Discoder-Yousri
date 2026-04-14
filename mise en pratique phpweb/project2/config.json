@@ -1,8 +1,8 @@
 {
-    "NomProjet":"Project",
-	"Host":"localhost",
-	"Port":"3306",
-	"DbName":"utilisateurs",
-	"Login":"root",
-	"Pwd":""
+    "NomProjet": "Project",
+    "host": "localhost",
+    "Port": "3306",
+    "dbname": "utilisateurs",
+    "username": "root",
+    "password": ""
 }

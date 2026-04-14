@@ -15,9 +15,16 @@ if ($page === 'acceuil') {
 
     include 'php/view/general/contact.php';
 } elseif ($page === 'inscription') {
+    include_once 'php/model/services/BDD.Class.php';
+    include_once 'php/model/services/Inscription.Class.php';
+$gestionInscription = new Inscription();
+    
+    
+    $gestionInscription->Ajouter();
+
     include 'php/view/form/inscription.php';
 } elseif ($page === 'connexion') {
-    include 'php/model/services/DBConnect.Class.php';
+    include 'php/model/services/BDD.Class.php';
     include 'php/view/form/connexion.php';
 } else {
     echo "<h1>Page introuvable</h1>";

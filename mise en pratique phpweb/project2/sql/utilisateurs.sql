@@ -1,9 +1,10 @@
-CREATE TABLE IF NOT EXISTS user (
+drop table if exists users;
+CREATE TABLE IF NOT EXISTS users (
 	id_user INT AUTO_INCREMENT,
 	username VARCHAR(50) NOT NULL,
-	mail VARCHAR(100) NOT NULL UNIQUE,
-	mdp text NOT NULL,
+	email VARCHAR(100) NOT NULL UNIQUE,
+	password text NOT NULL,
 	PRIMARY KEY(id_user)
 );
 
-INSERT INTO user (id_user, username, mail, mdp) VALUES (1, 'titus', 'titus@gmail.com', 'titus32');
+INSERT INTO users (id_user, username, email, password) VALUES (1, 'titus', 'titus@gmail.com', 'titus32');
