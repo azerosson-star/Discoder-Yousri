@@ -1,0 +1,64 @@
+
+
+
+SELECT MAX(c.quantiteCommande * a.prixArticle) 
+FROM commandes c INNER JOIN articles a ON c.idArticle = a.idArticle;
+
+SELECT AVG(c.quantiteCommande * a.prixArticle) 
+FROM commandes c INNER JOIN articles a ON c.idArticle = a.idArticle;
+
+SELECT MIN(c.quantiteCommande * a.prixArticle) 
+FROM commandes c INNER JOIN articles a ON c.idArticle = a.idArticle;
+
+
+SELECT COUNT(*) FROM commandes;
+
+
+SELECT cl.nomClient, cl.prenomClient, AVG(co.cde_total) 
+FROM clients cl INNER JOIN commandes co ON cl.idClient = co.idClient 
+GROUP BY cl.idClient;
+
+SELECT cl.nomClient, cl.prenomClient, MAX(co.cde_total) 
+FROM clients cl INNER JOIN commandes co ON cl.idClient = co.idClient 
+GROUP BY cl.idClient;
+
+
+SELECT cl.nomClient, cl.prenomClient, COUNT(co.idCommande) 
+FROM clients cl INNER JOIN commandes co ON cl.idClient = co.idClient 
+GROUP BY cl.idClient;
+
+
+SELECT cl.nomClient, cl.prenomClient, AVG(co.quantiteCommande) 
+FROM clients cl INNER JOIN commandes co ON cl.idClient = co.idClient 
+GROUP BY cl.idClient;
+
+
+SELECT a.descriptionArticle, AVG(co.quantiteCommande) 
+FROM articles a INNER JOIN commandes co ON a.idArticle = co.idArticle 
+GROUP BY a.idArticle;
+
+
+SELECT a.descriptionArticle, SUM(co.quantiteCommande) 
+FROM articles a INNER JOIN commandes co ON a.idArticle = co.idArticle 
+GROUP BY a.idArticle;
+
+
+SELECT cl.nomClient, co.dateCommande, AVG(co.quantiteCommande) 
+FROM clients cl INNER JOIN commandes co ON cl.idClient = co.idClient 
+GROUP BY cl.idClient, co.dateCommande;
+
+
+SELECT dateCommande, COUNT(*) FROM commandes GROUP BY dateCommande;
+
+
+SELECT COUNT(*) FROM clients;
+
+SELECT COUNT(DISTINCT cl.idClient) 
+FROM clients cl INNER JOIN commandes co ON cl.idClient = co.idClient;
+
+
+SELECT COUNT(DISTINCT a.idArticle) 
+FROM articles a INNER JOIN commandes co ON a.idArticle = co.idArticle;
+
+
+SELECT COUNT(DISTINCT dateCommande) FROM commandes;
