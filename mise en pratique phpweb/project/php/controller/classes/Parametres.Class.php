@@ -46,14 +46,14 @@ class Parametres
 
 			$parametre  = json_decode(file_get_contents("config.json"));
 			self::$_nomProjet = $parametre->NomProjet;
-			self::$_host = decode($parametre->Host);
+			self::$_host = $parametre->Host;
 			self::$_port = $parametre->Port;
-			self::$_dbname = decode($parametre->DbName);
-			self::$_login = decode($parametre->Login);
+			self::$_dbname = $parametre->DbName;
+			self::$_login = $parametre->Login;
 			if (strlen($parametre->Pwd) == 0)
 				self::$_pwd = $parametre->Pwd; //developpement
 			else
-				self::$_pwd = decode($parametre->Pwd); //production
+				self::$_pwd = $parametre->Pwd; //production
 		}
 	}
 }
