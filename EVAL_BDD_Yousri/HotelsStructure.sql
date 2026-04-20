@@ -57,7 +57,7 @@ CONSTRAINT `fk_reservation_clients`
     foreign key (`id_Client`)
     References `Client`(`id_Client`)
     ON DELETE RESTRICT ON UPDATE CASCADE);
-)
+
 drop table if exists Client
 create table if not exists Client
 CREATE TABLE Client (
@@ -66,5 +66,5 @@ nom_client text,
 prenom_client text,
 adresse_client text,
 ville_client text
-)
+);
 
