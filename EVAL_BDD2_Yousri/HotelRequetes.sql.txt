@@ -1,0 +1,13 @@
+1/SELECT * FROM hotels;
+2/SELECT villeClient from clients where nomClient = 'WHITE';
+3/SELECT nomStation,altitudeStation FROM stations where altitudeStation<1000;
+4/SELECT numChambre,capaciteChambre FROM chambres where capaciteChambre>1;
+5/SELECT nomClient,villeClient FROM clients where villeClient<>"Londres";
+6/select ho.nomHotel,ho.categorieHotel,ho.villeHotel,st.nomStation from hotels ho INNER JOIN stations st on ho.idStation = st.idStation;
+7/select ch.numChambre,ho.nomHotel,ho.categorieHotel,ho.villeHotel from hotels ho INNER JOIN chambres ch ON ho.idHotel = ch.idHotel;
+8/select re.dateReservationSejour,re.dateDebutSejour,re.dateFinSejour,cl.nomClient from reservations re INNER JOIN clients cl ON re.idClient = cl.idClient;
+9/SELECT ch.numChambre,ho.nomHotel from chambres ch inner join hotels ho on ch.idHotel = ho.idHotel,
+SELECT st.nomStation from stations st inner join hotels hoo on st.idStation=hoo.idStation;
+10/SELECT ch.numChambre,re.dateDebutSejour FROM chambres ch inner join reservations re on ch.IdChambre = re.IdChambre;
+11/select st.nomStation, count(ho.nomHotel) from hotels ho INNER JOIN stations st on ho.idStation = st.idStation group by ho.idStation;
+12/select st.nomStation, count(ch.numChambre) from stations st INNER JOIN chambres ch on st.idHotel = ch.idHotel group by ch.idHotel;
