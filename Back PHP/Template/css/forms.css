@@ -1,0 +1,7 @@
+/* Styles spécifiques aux formulaires */
+.form-group { display: flex; flex-direction: column; margin-bottom: 1rem; }
+.form-label { font-weight: bold; margin-bottom: 0.5rem; }
+.form-input { padding: 0.7rem; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+.form-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn { padding: 0.8rem 1.5rem; border: none; cursor: pointer; font-weight: bold; }
+.btn:hover { opacity: 0.9; }

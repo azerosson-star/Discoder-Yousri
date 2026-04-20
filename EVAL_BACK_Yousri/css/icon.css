@@ -1,0 +1,192 @@
+@font-face {
+    font-family: "font-awesome";
+    src: url("../assets/fonts/fa-solid-900.ttf");
+}
+
+.fas,
+.fa-solid {
+    font-family: "font-awesome";
+    font-style: normal;
+}
+.fa-margin{
+    margin-left: 0.5rem;
+}
+.fa-sort::before {
+    content: "\f0dc";
+}
+.fa-product::before{
+    content: "\f02a";
+}
+
+.fa-contact::before{
+    content: "\f2b9";
+}
+.fa-eye::before {
+    content: "\f06e";
+}
+.fa-eye-slash::before {
+    content: "\f070";
+}
+
+.fa-question-circle::before {
+    content: "\f059";
+}
+
+.fa-check-circle::before {
+    content: "\f058";
+}
+
+.fa-check::before {
+    content: "\f00c";
+}
+
+.fa-house::before {
+    content: "\f2f5";
+}
+
+.fa-house::before {
+    content: "\E00D";
+}
+.fa-arrow-left::before {
+    content: "\F060";
+}
+
+.fa-paper-plane::before {
+    content: "\f1d8";
+}
+
+.fa-times-circle::before {
+    content: "\f057";
+}
+
+.fa-plus::before {
+    content: "\2b";
+}
+
+.fa-file-contract::before {
+    content: "\f56c";
+}
+
+.fa-pen::before {
+    content: "\f304";
+}
+
+.fa-trash-alt::before {
+    content: "\f2ed";
+}
+
+.fa-square-caret-up::before{
+    content: "\F106";
+    font-size: 4rem;
+}
+.fa-number::before {
+    content: "\F292";
+}
+.fa-rotate-180 {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.fa-arrow-down-z-a::before {
+    content: "\f881";
+}
+
+.fa-arrow-down-a-z::before {
+    content: "\f15d";
+}
+.fa-angle-down::after{
+    content: "\F107";
+}
+.fa-1::before {
+    content: "\31";
+}
+
+.fa-2::before {
+    content: "\32";
+}
+
+.fa-3::before {
+    content: "\33";
+}
+
+.fa-4::before {
+    content: "\34";
+}
+
+.fa-5::before {
+    content: "\35";
+}
+.fa-moon::before {
+    content: "\F186";
+}
+.fa-sun::before {
+    content: "\F185";
+}
+
+.fa-xs {
+    font-size: 0.75rem;
+    line-height: 0.08333rem;
+    vertical-align: 0.125rem;
+}
+
+.fa-filter::before {
+    content: "\f0b0";
+}
+.fa-calculator::before{
+    content: "\f1ec";
+}
+.fa-disconnect::before {
+    content: "\F2F5";
+}
+.fa-lock-open::before {
+    content: "\F3C1";
+}
+.fa-floppy-disk::before {
+    content: "\f0c7";
+}
+.fa-clock::before {
+    content: "\f017";
+}
+
+.fa-user-check::before {
+    content: "\f4fc";
+}
+.fa-circle::before {
+    content: "\f111";
+}
+.fa-circle-dot::before {
+    content: "\f1ce";
+}
+.fa-box-archive::before {
+    content: "\f187";
+}
+.fa-todo::before {
+    content: "\f7d9";
+}
+
+.fa-expand::before {
+    content: "\f424";
+}
+
+.fa-contract::before {
+    content: "\f422";
+}
+
+.fa-fav:before {
+    content: "\F5C0";
+}
+
+.favActive {
+    color: rgb(212, 212, 7);
+}
+
+.fa-pointages::before{
+    content: "\F00B";
+}
+
+.fa-syntheses::before{
+    content: "\F00A";
+}
+.fa-truck::before{
+    content: "\F0D1";
+}

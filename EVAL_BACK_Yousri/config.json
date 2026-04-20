@@ -1,0 +1,23 @@
+{
+    "host":"localhost",
+    "login":"root",
+    "password":"",
+    "nomBase":"ecf",
+    "port":3306,
+    "typeIcon":"filled",
+    "nav":{
+        
+        "Accueil":{
+            "reference":"?page=Accueil",
+            "nom":"Accueil",
+            "icon":"home",
+            "roleRequis":0
+        },
+        "Voiture":{
+            "reference":"?page=voiture",
+            "nom":"Voiture",
+            "icon":"info",
+            "roleRequis":0
+        }
+    }
+}
